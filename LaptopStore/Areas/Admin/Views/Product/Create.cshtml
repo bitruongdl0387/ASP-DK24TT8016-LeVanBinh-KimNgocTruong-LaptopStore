@@ -1,0 +1,80 @@
+﻿@model LaptopStore.Models.Product
+
+<div class="container mt-4">
+    <h2>Thêm sản phẩm</h2>
+
+    <form asp-area="Admin"
+          asp-controller="Product"
+          asp-action="Create"
+          method="post"
+          enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label>Tên laptop</label>
+            <div class="mb-3">
+
+                <label>Hãng sản xuất</label>
+
+                <select asp-for="BrandId"
+                        class="form-control">
+
+                    <option value="">
+                        -- Chọn hãng --
+                    </option>
+
+                    @foreach (var brand in ViewBag.Brands)
+                    {
+                        <option value="@brand.Id">
+                            @brand.Name
+                        </option>
+                    }
+
+                </select>
+
+            </div>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>CPU</label>
+            <input asp-for="Cpu" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>RAM</label>
+            <input asp-for="Ram" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>SSD</label>
+            <input asp-for="Ssd" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Giá</label>
+            <input asp-for="Price" type="number" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Giá khuyến mãi</label>
+            <input asp-for="SalePrice"
+                   type="number"
+                   class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Số lượng</label>
+            <input asp-for="Quantity" type="number" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Ảnh sản phẩm</label>
+            <input type="file"
+                   name="imageFile"
+                   class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Lưu sản phẩm
+        </button>
+
+    </form>
+</div>

@@ -1,0 +1,33 @@
+﻿<div class="container mt-5">
+
+    <h2>Đăng nhập Admin</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label>Tài khoản</label>
+            <input name="username"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Mật khẩu</label>
+            <input name="password"
+                   type="password"
+                   class="form-control" />
+        </div>
+
+        <button class="btn btn-primary">
+            Đăng nhập
+        </button>
+
+    </form>
+
+</div>

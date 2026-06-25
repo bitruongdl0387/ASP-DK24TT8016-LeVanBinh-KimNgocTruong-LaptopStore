@@ -1,0 +1,209 @@
+﻿@model List<LaptopStore.Models.Product>
+
+<!-- Banner -->
+
+<div id="mainBanner"
+     class="carousel slide mb-4"
+     data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+
+        <button type="button"
+                data-bs-target="#mainBanner"
+                data-bs-slide-to="0"
+                class="active">
+        </button>
+
+        <button type="button"
+                data-bs-target="#mainBanner"
+                data-bs-slide-to="1">
+        </button>
+
+        <button type="button"
+                data-bs-target="#mainBanner"
+                data-bs-slide-to="2">
+        </button>
+
+    </div>
+
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+
+            <img src="/images/banner1.jpg"
+                 class="d-block w-100 banner-slide">
+
+        </div>
+
+        <div class="carousel-item">
+
+            <img src="/images/banner2.jpg"
+                 class="d-block w-100 banner-slide">
+
+        </div>
+
+        <div class="carousel-item">
+
+            <img src="/images/banner3.jpg"
+                 class="d-block w-100 banner-slide">
+
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#mainBanner"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#mainBanner"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+</div>
+<div class="brand-filter text-center mb-4">
+
+    <a asp-controller="Home"
+       asp-action="Index"
+       class="btn btn-dark m-1">
+        Tất cả
+    </a>
+
+    @foreach (var brand in ViewBag.Brands)
+    {
+        var activeClass =
+            ViewBag.SelectedBrandId != null &&
+            ViewBag.SelectedBrandId == brand.Id
+            ? "btn-primary"
+            : "btn-outline-primary";
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           asp-route-brandId="@brand.Id"
+           class="btn @activeClass m-1">
+
+            @brand.Name
+
+        </a>
+    }
+
+</div>
+
+</div>
+<!-- Search -->
+<form method="get"
+      asp-action="Index"
+      class="mb-4">
+
+    <div class="input-group input-group-lg">
+
+        <input type="text"
+               name="searchString"
+               class="form-control"
+               placeholder="Tìm laptop theo tên, CPU, RAM..." />
+
+        <button type="submit"
+                class="btn btn-primary">
+            🔍 Tìm kiếm
+        </button>
+
+    </div>
+
+</form>
+
+<h2 class="mb-4">
+    🖥️ Danh sách Laptop
+</h2>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+            <div class="card product-card h-100">
+
+                <img src="@item.ImageUrl"
+                     class="card-img-top p-3"
+                     style="height:220px;object-fit:contain;" />
+
+                <div class="card-body">
+
+                    @if (item.SalePrice.HasValue)
+                    {
+                        <span class="badge bg-danger mb-2">
+                            SALE
+                        </span>
+                    }
+
+                    <h5 class="fw-bold">
+                        @item.Name
+                    </h5>
+
+                    <p class="text-muted mb-1">
+                        CPU: @item.Cpu
+                    </p>
+
+                    <p class="text-muted">
+                        @item.Ram | @item.Ssd
+                    </p>
+
+                    @if (item.SalePrice.HasValue)
+                    {
+                        <p class="text-decoration-line-through text-secondary mb-1">
+                            @item.Price.ToString("N0") VNĐ
+                        </p>
+
+                        <h4 class="text-danger fw-bold">
+                            @item.SalePrice.Value.ToString("N0") VNĐ
+                        </h4>
+                    }
+                    else
+                    {
+                        <h4 class="text-danger fw-bold">
+                            @item.Price.ToString("N0") VNĐ
+                        </h4>
+                    }
+
+                </div>
+                <a asp-controller="Product"
+                   asp-action="Details"
+                   asp-route-id="@item.Id"
+                   class="btn btn-outline-secondary w-100 mb-2">
+
+                    👁️ Xem chi tiết
+
+                </a>
+                <div class="card-footer bg-white border-0">
+
+                    <a asp-controller="Cart"
+                       asp-action="AddToCart"
+                       asp-route-id="@item.Id"
+                       class="btn btn-primary w-100">
+                        🛒 Thêm vào giỏ
+                    </a>
+
+                    <a asp-controller="Wishlist"
+                       asp-action="Add"
+                       asp-route-productId="@item.Id"
+                       class="btn btn-outline-danger w-100 mt-2">
+                        ❤️ Yêu thích
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>

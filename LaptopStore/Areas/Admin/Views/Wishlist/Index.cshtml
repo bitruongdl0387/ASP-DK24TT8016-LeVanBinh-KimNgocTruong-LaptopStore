@@ -1,0 +1,52 @@
+﻿@model List<LaptopStore.Models.Wishlist>
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-danger text-white">
+
+        <h3 class="mb-0">
+            ❤️ Danh sách yêu thích
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Khách hàng</th>
+
+                    <th>Sản phẩm</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Id</td>
+
+                        <td>@item.Customer?.FullName</td>
+
+                        <td>@item.Product?.Name</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

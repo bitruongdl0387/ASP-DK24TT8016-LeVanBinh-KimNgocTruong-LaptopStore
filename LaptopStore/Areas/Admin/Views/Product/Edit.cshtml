@@ -1,0 +1,60 @@
+﻿@model LaptopStore.Models.Product
+
+<div class="container mt-4">
+    <h2>Sửa sản phẩm</h2>
+
+    <form asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="IsActive" />
+        <input type="hidden" asp-for="ImageUrl" />
+        <input type="hidden" asp-for="Description" />
+        <input type="hidden" asp-for="Vga" />
+        <input type="hidden" asp-for="DisplaySize" />
+        <input type="hidden" asp-for="BrandId" />
+        <div class="mb-3">
+            <label>Tên laptop</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>CPU</label>
+            <input asp-for="Cpu" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>RAM</label>
+            <input asp-for="Ram" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>SSD</label>
+            <input asp-for="Ssd" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Giá</label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Số lượng</label>
+            <input asp-for="Quantity" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Ảnh URL</label>
+            <input asp-for="ImageUrl" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Giá khuyến mãi</label>
+            <input asp-for="SalePrice"
+                   type="number"
+                   class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Cập nhật
+        </button>
+
+    </form>
+</div>

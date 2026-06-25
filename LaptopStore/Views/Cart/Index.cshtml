@@ -1,0 +1,56 @@
+﻿@model List<LaptopStore.Models.CartItem>
+
+<h2>Giỏ hàng</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+
+                <td>
+                    <a asp-action="Decrease"
+                       asp-route-id="@item.Product.Id"
+                       class="btn btn-sm btn-outline-secondary">-</a>
+
+                    <span class="mx-2">@item.Quantity</span>
+
+                    <a asp-action="Increase"
+                       asp-route-id="@item.Product.Id"
+                       class="btn btn-sm btn-outline-secondary">+</a>
+                </td>
+
+                <td>@item.Product.Price.ToString("N0") VNĐ</td>
+
+                <td>@((item.Product.Price * item.Quantity).ToString("N0")) VNĐ</td>
+
+                <td>
+                    <a asp-controller="Cart"
+                       asp-action="Remove"
+                       asp-route-id="@item.Product.Id"
+                       class="btn btn-danger btn-sm">
+                        Xóa
+                    </a>
+                </td>
+                <div class="mt-3">
+                    <a asp-controller="Cart"
+                       asp-action="Checkout"
+                       class="btn btn-success">
+                        Thanh toán
+                    </a>
+                </div>
+            </tr>
+        }
+    </tbody>
+</table>

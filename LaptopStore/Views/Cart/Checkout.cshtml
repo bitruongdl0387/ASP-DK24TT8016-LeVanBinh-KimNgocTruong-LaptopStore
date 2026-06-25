@@ -1,0 +1,54 @@
+﻿@model LaptopStore.ViewModels.CheckoutViewModel
+
+<h2>Thanh toán</h2>
+
+<form asp-action="Checkout" method="post">
+
+    <div class="mb-3">
+        <label>Họ tên</label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Số điện thoại</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Địa chỉ</label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Ghi chú</label>
+        <textarea asp-for="Note" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Đặt hàng
+    </button>
+    <hr />
+
+    <h4>💳 Thanh toán chuyển khoản</h4>
+
+    <p>
+        <strong>Ngân hàng:</strong> MB Bank
+    </p>
+
+    <p>
+        <strong>Số tài khoản:</strong> BINH1368
+    </p>
+
+    <p>
+        <strong>Chủ tài khoản:</strong> LÊ VĂN BÌNH
+    </p>
+
+    <img src="https://img.vietqr.io/image/MB-BINH1368-compact2.png?accountName=LE%20VAN%20BINH"
+         style="max-width:300px"
+         class="img-fluid border rounded" />
+</form>

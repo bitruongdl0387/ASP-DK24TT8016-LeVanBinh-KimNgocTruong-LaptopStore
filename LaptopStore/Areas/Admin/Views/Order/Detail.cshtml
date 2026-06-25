@@ -1,0 +1,59 @@
+﻿@model List<LaptopStore.Models.OrderDetail>
+
+@{
+    var order = ViewBag.Order as LaptopStore.Models.Order;
+}
+
+<div class="container mt-4">
+
+    <h2>Chi tiết đơn hàng #@order.Id</h2>
+
+    <div class="mb-3">
+        <strong>Ngày đặt:</strong>
+        @order.OrderDate.ToString("dd/MM/yyyy HH:mm")
+    </div>
+
+    <div class="mb-3">
+        <strong>Trạng thái:</strong>
+        @order.Status
+    </div>
+
+    <div class="mb-3">
+        <strong>Ghi chú:</strong>
+        @order.Note
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("N0") VNĐ</td>
+                    <td>@((item.Quantity * item.Price).ToString("N0")) VNĐ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="text-danger">
+        Tổng tiền:
+        @order.TotalAmount.ToString("N0") VNĐ
+    </h4>
+
+    <a href="/Admin/Order"
+       class="btn btn-secondary">
+        ← Quay lại
+    </a>
+
+</div>

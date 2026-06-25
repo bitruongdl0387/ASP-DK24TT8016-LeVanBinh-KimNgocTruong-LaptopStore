@@ -1,0 +1,60 @@
+﻿@model List<LaptopStore.Models.Customer>
+
+<div class="card shadow border-0">
+
+    <div class="card-header bg-primary text-white">
+
+        <h3 class="mb-0">
+            👤 Quản lý khách hàng
+        </h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Họ tên</th>
+
+                    <th>Điện thoại</th>
+
+                    <th>Email</th>
+
+                    <th>Địa chỉ</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Id</td>
+
+                        <td>@item.FullName</td>
+
+                        <td>@item.Phone</td>
+
+                        <td>@item.Email</td>
+
+                        <td>@item.Address</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+﻿@model List<LaptopStore.Models.Product>
+
+<div class="container mt-4">
+    <h2>Sản phẩm yêu thích</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+
+                    <img src="@item.ImageUrl"
+                         class="card-img-top"
+                         style="height:220px;object-fit:cover;" />
+
+                    <div class="card-body">
+                        <h5>@item.Name</h5>
+
+                        <p class="text-danger">
+                            @item.Price.ToString("N0") VNĐ
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
